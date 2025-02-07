@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <div class="container mt-5">
+      <!--method is used to get data from enduser and its connect with backend server, multipart use for file input-->
+
+         <form class="col-6 mx-auto" method="post" enctype="multipart/form-data">
+
+          {% csrf_token %}<!--its take only ethical data, and its sure that the website take the original data, and its generate new token with everytime loaded.-->
+
+        <h2>Enter your Receipe Details</h2>
+
+
+         <div class="mb-3">
+            <label for="receipe_name" class="form-label">receipe Name:</label><br>
+            <input name="receipe_name" required type="text" class="form-control"><br>
+         </div>
+
+         <div class="mb-3">
+            <label for="receipe_description"  class="form-label">receipe Description:</label><br>
+            <textarea class="form-control" required name="receipe_description"></textarea><br>
+          </div>
+
+          <div class="mb-3">
+             <label for="receipe_image" class="form-label">receipe image:</label><br>
+             <input name="receipe_image" type="file" class="form-control">
+          </div>
+
+        <button type="submit" class="btn btn-primary">Add Receipe</button>
+      </form>
+          
+    </div>
+<br>
+
+
+    <!--this for already have receipes, to show user-->
+    <table class="table" border="3" style="border-collapse: collapse; width: 100%;">
+      <thead>
+        <tr>
+          <th scope="col">serial no</th>
+          <th scope="col">Receipe Name</th>
+          <th scope="col">Receipe Description</th>
+          <th scope="col">Receipe Image</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for receipe in receipes %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{receipe.receipe_name}}</td>
+            <td>{{receipe.receipe_description}}</td>
+            <td>
+              {% if receipe.receipe_image %}
+                <img src="{{receipe.receipe_image.url}}" alt="Receipe Image" width="150">
+              {% else %}
+                <p>No image Available</p>
+              {% endif %}
+              </td>
+              <td>
+                   <a href="/delete_receipe/{{receipe.id}}/" class="btn btn-danger" color: red;>Delete</a>
+              </td>
+            </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  
+</body>
+</html>
