@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Receipe</title>
 </head>
 <body>
 
@@ -65,7 +65,8 @@
               {% endif %}
               </td>
               <td>
-                   <a href="/delete_receipe/{{receipe.id}}/" class="btn btn-danger" color: red;>Delete</a>
+                   <a href="/delete_receipe/{{receipe.id}}/" class="btn btn-danger mb-3" color: red;>Delete</a>
+                   <a href="/update_receipe/{{receipe.id}}/" class="btn btn-success" color: red;>Update</a>
               </td>
             </tr>
         {% endfor %}

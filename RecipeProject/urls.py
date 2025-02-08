@@ -26,6 +26,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", receipes, name= "receipes"),
     path("delete_receipe/<int:id>/", delete_receipe, name= "delete_receipe"),
+    path("update_receipe/<int:id>/", update_receipe, name= "update_receipe"),
 ]
 if settings.DEBUG:
    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

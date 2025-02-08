@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update_Receipes</title>
+</head>
+<body>
+
+
+    <div class="container mt-5">
+      <!--method is used to get data from enduser and its connect with backend server, multipart use for file input-->
+
+         <form class="col-6 mx-auto" method="post" enctype="multipart/form-data">
+
+          {% csrf_token %}<!--its take only ethical data, and its sure that the website take the original data, and its generate new token with everytime loaded.-->
+
+        <h2>Update your Receipe Details</h2>
+
+
+         <div class="mb-3">
+            <label for="receipe_name" class="form-label">receipe Name:</label><br>
+            <input name="receipe_name" value="{{receipes.receipe_name}}" required type="text" class="form-control"><br>
+         </div>
+
+         <div class="mb-3">
+            <label for="receipe_description"  class="form-label">receipe Description:</label><br>
+            <textarea class="form-control" required name="receipe_description">{{receipes.receipe_description}}</textarea><br>
+          </div>
+
+          <div class="mb-3">
+             <label for="receipe_image" class="form-label">receipe image:</label><br>
+             <input name="receipe_image" type="file" class="form-control">
+          </div>
+
+        <button type="submit" class="btn btn-primary">Update Receipe</button>
+      </form>
+          
+    </div>
+<br>
+</body>
+</html>
