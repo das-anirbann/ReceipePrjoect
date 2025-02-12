@@ -20,7 +20,12 @@ def receipes(request):
      )
      return redirect('receipes')
   queryset = Receipe.objects.all()
-  context = {'receipes': queryset}
+
+  search_query = request.GET.get('search_receipe', '')
+  if search_query:
+     queryset = queryset.filter(receipe_name__icontains = search_query)
+  context = {'receipes': queryset,
+             'search_query':search_query,}
   return render(request, 'receipes.html', context)
 
 
@@ -44,7 +49,7 @@ def update_receipe(request, id):
      queryset.save() 
      return redirect('/')
     
-    context = {'receipes': queryset}
+    context = {'receipe': queryset}
     return render(request, 'update_receipes.html', context)
 
 def delete_receipe(request, id):

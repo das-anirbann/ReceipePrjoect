@@ -37,8 +37,33 @@
       </form>
           
     </div>
+    <hr>
 <br>
+                         <!--search_query-->
+   <div class="mt-5">
+     <div class="mx-auto col-6">
+      <form>
+      <label for="search_receipe" class="form-label">Search Receipe</label><br>
+      <input name="search_receipe" value="{{receipes.search_receipe}}" type="text" class="form-control"><br>
+      <button type="submit" class = "btn btn-primary">search</button>
 
+      {% if search_query %}
+      
+    
+        <a href="/" >
+
+        <button class="btn btn-secondary mt-2">Back to Main Page</button>
+
+        </a>
+
+      </button>
+      {% endif %}
+
+    </form>
+    </div>
+   </div>
+   <br>
+   <hr>
 
     <!--this for already have receipes, to show user-->
     <table class="table" border="3" style="border-collapse: collapse; width: 100%;">
@@ -65,11 +90,24 @@
               {% endif %}
               </td>
               <td>
-                   <a href="/delete_receipe/{{receipe.id}}/" class="btn btn-danger mb-3" color: red;>Delete</a>
-                   <a href="/update_receipe/{{receipe.id}}/" class="btn btn-success" color: red;>Update</a>
+                <!--<button type="submit" class="btn-danger mb-3">
+                   <a href="/delete_receipe/{{receipe.id}}/" type="submit" class="btn btn-danger mb-3">Delete</a>
+                  </button>-->
+                  <form action="/delete_receipe/{{receipe.id}}/" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" style="background-color: #ff0000; color: white";>Delete</button>
+                </form>
+  
+                  <br>
+
+                  <a href="/update_receipe/{{receipe.id}}/">
+                    <button class="btn btn-secondary mt-2">update</button>
+                  </a>
               </td>
             </tr>
+
         {% endfor %}
+        
       </tbody>
     </table>
   
